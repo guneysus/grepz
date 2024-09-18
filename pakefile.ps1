@@ -15,11 +15,12 @@ function Init {
 }
 
 function Build {
-. "${msbuild}" /bl `
-  $PROJECT `
-  -p:Configuration=Release `
-  "/t:Clean;Build" `
-   -p:Deterministic=true
+# . "${msbuild}" /bl `
+  # $PROJECT `
+  # -p:Configuration=Release `
+  # "/t:Clean;Build" `
+   # -p:Deterministic=true
+   dotnet build $PROJECT  -c Release -r win-x64
 }
 
 
@@ -32,9 +33,10 @@ function Debug {
 }
 
 function Publish {
-  # nbgv prepare-release
+  nbgv prepare-release
   dotnet restore src/Grepz.sln
-  # Build
+  Build
+  dotnet publish $PROJECT -r win-x64
   dotnet pack $PROJECT -o dist/ --no-build --configuration Release
   dotnet nuget push `
     "dist/Grepz.$(nbgv get-version -v NuGetPackageVersion).nupkg" `

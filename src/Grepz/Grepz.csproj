@@ -9,13 +9,13 @@
         <TrimmerRemoveSymbols>true</TrimmerRemoveSymbols>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <PackAsTool>true</PackAsTool>
+        <!--<PackAsTool>true</PackAsTool>
         <ToolCommandName>grepz</ToolCommandName>
         <PackageId>Grepz</PackageId>
         <Authors>Ahmed Şeref Güneysu</Authors>
         <Product>Grepz</Product>
         <AssemblyName>grepz</AssemblyName>
-        <RootNamespace>Grepz</RootNamespace>
+        <RootNamespace>Grepz</RootNamespace>-->
     </PropertyGroup>
 
     <ItemGroup>
