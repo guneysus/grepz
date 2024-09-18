@@ -9,10 +9,21 @@
         <TrimmerRemoveSymbols>true</TrimmerRemoveSymbols>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <PackAsTool>true</PackAsTool>
+        <ToolCommandName>grepz</ToolCommandName>
+        <PackageId>Grepz</PackageId>
+        <Authors>Ahmed Şeref Güneysu</Authors>
+        <Product>Grepz</Product>
+        <AssemblyName>grepz</AssemblyName>
+        <RootNamespace>Grepz</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="CommandLineParser" Version="2.9.1" />
+        <PackageReference Include="Nerdbank.GitVersioning" Version="3.6.143">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
 
 </Project>
