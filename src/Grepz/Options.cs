@@ -9,6 +9,9 @@ public class Options {
     [Option ('n', "line-number", Required = false, HelpText = "print line number with output lines")]
     public bool LineNumbers { get; set; }
 
+    [Option ('o', "only-matching", Required = false, HelpText = "show only the part of a line matching PATTERN")]
+    public bool OnlyMatching { get; set; }
+
     [Value(1, Required = true, HelpText = "Text pattern")]
     public string Pattern { get; set; }
 }

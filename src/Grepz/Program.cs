@@ -4,6 +4,11 @@ using CommandLine;
 
 using Grepz;
 
+static string red (string input) => $"\u001b[31m{input}\u001b[0m";
+static string green (string input) => $"\u001b[32m{input}\u001b[0m";
+static string yellow (string input) => $"\u001b[33m{input}\u001b[0m";
+static string blue (string input) => $"\u001b[34m{input}\u001b[0m";
+
 var result = Parser.Default.ParseArguments<Options>(args)
     .WithParsed(options => {
         // Set up StreamReader for stdin
@@ -25,16 +30,22 @@ var result = Parser.Default.ParseArguments<Options>(args)
         string line;
         int lineNum = 1;
         while ( ( line = reader.ReadLine () ) != null ) {
-            if(regex.Match (line).Success ) {
+            var match = regex.Match (line);
+            if(match.Success ) {
                 // Replace matched "elit" with colored version using ANSI escape codes
-                string highlightedLine = regex.Replace(line, match => $"\u001b[31m{match.Value}\u001b[0m");
+                string highlightedLine = regex.Replace(line, match => yellow(match.Value));
 
                 // Write the modified line to stdout
                 if(options.LineNumbers) {
-                    writer.Write($"\u001b[32m{lineNum}\u001b[0m\u001b[33m:\u001b[0m");
+                    writer.Write($"{red(lineNum.ToString())}:");
                 }
 
-                writer.WriteLine (highlightedLine);
+                if(options.OnlyMatching) {
+                    writer.WriteLine(match.Value);
+                } else {
+                    writer.WriteLine (highlightedLine);
+
+                }
             }
             lineNum++;
         }
