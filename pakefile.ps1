@@ -29,7 +29,7 @@ function Test {
 }
 
 function Debug {
-  cat $SAMPLE | dotnet run -c Debug --project $PROJECT -- "ex" -i
+  cat $SAMPLE | dotnet run -c Debug --project $PROJECT -- "ex" -i -n
 }
 
 function Publish {
