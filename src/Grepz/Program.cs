@@ -23,12 +23,25 @@ var result = Parser.Default.ParseArguments<Options>(args)
                   Regex regex = new Regex(options.Pattern, opts);
 
                   string line;
+                  int lineNum = 0;
                   while ( ( line = reader.ReadLine () ) != null ) {
+                      lineNum++;
+
                       // Replace matched "elit" with colored version using ANSI escape codes
                       string highlightedLine = regex.Replace(line, match => $"\u001b[31m{match.Value}\u001b[0m");
 
                       // Write the modified line to stdout
-                      writer.WriteLine (highlightedLine);
+                      if(options.OnlyMatching) {
+                          if(regex.IsMatch(line)) {
+                              writer.Write($"{lineNum}: ");
+                              writer.WriteLine (highlightedLine);
+                          } else {
+
+                          }
+                      }
+                      else {
+                          writer.WriteLine (highlightedLine);
+                      }
                   }
               }) // options is an instance of Options type
               .WithNotParsed(errors => {
