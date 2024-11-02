@@ -38,7 +38,11 @@ function Publish {
   Build
   dotnet publish $PROJECT -r win-x64
   dotnet pack $PROJECT -o dist/ --no-build --configuration Release
-  dotnet nuget push `
+}
+
+function Release {
+	Publish
+	  dotnet nuget push `
     "dist/Grepz.$(nbgv get-version -v NuGetPackageVersion).nupkg" `
     --source https://www.myget.org/F/guneysu/api/v2/package --api-key=$env:MYGET_API_KEY
 }
